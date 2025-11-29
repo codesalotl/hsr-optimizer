@@ -28,6 +28,19 @@ const lightCones = [
         def: 529,
       },
     },
+    effects: {
+      unconditional: {
+        breakEffect: 0.6,
+      },
+      conditional: {
+        inflicts: {
+          title: "Routed",
+          breakDmg: 0.24,
+          spd: -0.2,
+          stackable: false,
+        },
+      },
+    },
   },
 ];
 
