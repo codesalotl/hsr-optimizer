@@ -1,5 +1,6 @@
 const characters = [
   {
+    id: 1,
     name: "Firefly",
     rarity: 5,
     type: "fire",
@@ -18,6 +19,7 @@ const characters = [
 
 const lightCones = [
   {
+    id: 1,
     title: "Whereabouts Should Dreams Rest",
     rarity: 5,
     path: "destruction",
@@ -140,5 +142,186 @@ const subStats = [
   },
 ];
 
-console.log(characters);
-console.log(lightCones);
+const relicInstances = [
+  {
+    id: 1,
+    set: "Iron Cavalry Agaist the Scourge",
+    slot: "head",
+    initialSubstats: 4,
+    level: 15,
+    mainStat: {
+      type: "breakEffect",
+    },
+    subStats: [
+      { type: "spd", rolls: ["low", "low"] },
+      { type: "atkPercent", rolls: ["low", "low"] },
+      { type: "hp", rolls: ["low", "low"] },
+      { type: "breakEffect", rolls: ["low", "low"] },
+    ],
+  },
+  {
+    id: 2,
+    set: "Iron Cavalry Agaist the Scourge",
+    slot: "body",
+    initialSubstats: 3,
+    level: 15,
+    mainStat: {
+      type: "breakEffect",
+    },
+    subStats: [
+      { type: "spd", rolls: ["low", "low", "low"] },
+      { type: "atkPercent", rolls: ["low", "low"] },
+      { type: "hp", rolls: ["low", "low"] },
+      { type: "breakEffect", rolls: ["low", "low"] },
+    ],
+  },
+  {
+    id: 3,
+    set: "Iron Cavalry Agaist the Scourge",
+    slot: "hand",
+    initialSubstats: 3,
+    level: 15,
+    mainStat: {
+      type: "breakEffect",
+    },
+    subStats: [
+      { type: "spd", rolls: ["low", "low", "low"] },
+      { type: "atkPercent", rolls: ["low", "low", "low"] },
+      { type: "hp", rolls: ["low"] },
+      { type: "breakEffect", rolls: ["low"] },
+    ],
+  },
+  {
+    id: 4,
+    set: "Iron Cavalry Agaist the Scourge",
+    slot: "feet",
+    initialSubstats: 3,
+    level: 15,
+    mainStat: {
+      type: "breakEffect",
+    },
+    subStats: [
+      { type: "spd", rolls: [] },
+      { type: "atkPercent", rolls: [] },
+      { type: "hp", rolls: [] },
+      { type: "breakEffect", rolls: [] },
+    ],
+  },
+  {
+    id: 5,
+    set: "Firmament Frontline: Glamoth",
+    slot: "planarSphere",
+    initialSubstats: 3,
+    level: 15,
+    mainStat: {
+      type: "breakEffect",
+    },
+    subStats: [
+      { type: "spd", rolls: [] },
+      { type: "atkPercent", rolls: [] },
+      { type: "hp", rolls: [] },
+      { type: "breakEffect", rolls: [] },
+    ],
+  },
+  {
+    id: 6,
+    set: "Firmament Frontline: Glamoth",
+    slot: "linkRope",
+    initialSubstats: 3,
+    level: 15,
+    mainStat: {
+      type: "breakEffect",
+    },
+    subStats: [
+      { type: "spd", rolls: [] },
+      { type: "atkPercent", rolls: [] },
+      { type: "hp", rolls: [] },
+      { type: "breakEffect", rolls: [] },
+    ],
+  },
+];
+
+let loadouts = [
+  {
+    id: 1,
+    character: 1,
+    lightCone: 1,
+    relicsSlots: {
+      cavernRelics: {
+        head: 1,
+        hands: 2,
+        body: 3,
+        feet: 4,
+      },
+      planarOrnaments: {
+        planarSphere: 5,
+        linkRope: 6,
+      },
+    },
+  },
+];
+
+// validtion to see if rolls are valid for the initial substat value
+function validateRolls(relicInstances) {
+  const relic = relicInstances[2];
+  const data = relic.subStats;
+  const initialSubstats = relic.initialSubstats;
+  const level = relic.level;
+
+  let numRolls = 0;
+  for (const item in data) {
+    const rolls = data[item].rolls;
+    numRolls += rolls.length;
+  }
+
+  if (initialSubstats === 3) {
+    if (level === 15) {
+      if (numRolls < 8) {
+        return "too little rolls";
+      } else if (numRolls > 8) {
+        return "too much rolls";
+      }
+      return "perfect";
+    }
+  } else if (initialSubstats === 4) {
+    if (level === 15) {
+      if (numRolls < 9) {
+        return "too little rolls";
+      } else if (numRolls > 9) {
+        return "too much rolls";
+      }
+      return "perfect";
+    }
+  } else {
+    return "invalid initial substats";
+  }
+}
+
+// console.log(validateRolls(relicInstances));
+
+function summarizeLoadout(data) {
+  // console.log(data.relics);
+
+  let setEffects = {};
+
+  for (let key in data.relics) {
+    console.log(key);
+    console.log(data.relics[key].set);
+
+    if (!(data.relics[key].set in setEffects)) {
+      setEffects[data.relics[key].set] = 1;
+    } else {
+      setEffects[data.relics[key].set] = setEffects[data.relics[key].set] + 1;
+    }
+
+    // console.log(data.relics[key].set in setEffects);
+  }
+
+  console.log(setEffects);
+
+  for (const set in relics) {
+    console.log("set", relics[set]);
+  }
+}
+
+summarizeLoadout(loadout[0]);
