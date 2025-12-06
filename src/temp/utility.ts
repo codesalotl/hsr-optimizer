@@ -1,3 +1,6 @@
+import { relics } from "./data/constants.ts";
+import { relicInstances } from "./data/instances.ts";
+
 export function calculateRelicFinalAtk(): number {
   return 0;
 }
@@ -41,21 +44,56 @@ export function calculateRelicFinalAtk(): number {
 export function getEquippedSetTally(data, id) {
   // console.log("data", data);
   // console.log("id", id);
+  // console.log("relics", relics);
+  // console.log("relicInstances", relicInstances);
 
   const loadout = data.find((item) => {
     return item.id === id;
   });
   const equippedRelics = loadout.relicsSlots;
 
-  console.log(loadout);
-  console.log(equippedRelics);
+  // console.log(loadout);
+  // console.log(equippedRelics);
 
   // loop over relics
   // tally relic sets
   // store in object
   // return object
 
-  return {};
+  for (const key in equippedRelics) {
+    // console.log(equippedRelics[key]);
+
+    let output = {};
+
+    for (const item in equippedRelics[key]) {
+      // console.log(equippedRelics[key][item])
+      // console.log(relicInstances)
+
+      // find relic instance for current relic id
+      // match id
+      const relicItem = relicInstances.find(relic => relic.id === equippedRelics[key][item]);
+      console.log("relicItem", relicItem);
+
+      const {set, ...rest} = relicItem
+      console.log(set)
+
+      console.log("set" in output)
+      if (!("set" in output)) {
+        output["set"] = set
+      } else {
+        console.log();
+      };
+
+      // aggregate:
+      //   - flat stats
+      //   - percent stats
+      //   - set bonuses
+    }
+
+    console.log("output", output)
+    return output;
+  }
+
 
   // console.log(data.relics);
   // let setEffects = {};

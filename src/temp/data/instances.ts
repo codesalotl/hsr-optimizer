@@ -57,10 +57,10 @@ export const relicInstances = [
       type: "breakEffect",
     },
     subStats: [
-      { type: "spd", rolls: [] },
-      { type: "atkPercent", rolls: [] },
-      { type: "hp", rolls: [] },
-      { type: "breakEffect", rolls: [] },
+      { type: "spd", rolls: ["low", "low", "low"] },
+      { type: "atkPercent", rolls: ["low", "low", "low"] },
+      { type: "hp", rolls: ["low"] },
+      { type: "breakEffect", rolls: ["low"] },
     ],
   },
   {
@@ -73,10 +73,10 @@ export const relicInstances = [
       type: "breakEffect",
     },
     subStats: [
-      { type: "spd", rolls: [] },
-      { type: "atkPercent", rolls: [] },
-      { type: "hp", rolls: [] },
-      { type: "breakEffect", rolls: [] },
+      { type: "spd", rolls: ["low", "low", "low"] },
+      { type: "atkPercent", rolls: ["low", "low", "low"] },
+      { type: "hp", rolls: ["low"] },
+      { type: "breakEffect", rolls: ["low"] },
     ],
   },
   {
@@ -89,10 +89,10 @@ export const relicInstances = [
       type: "breakEffect",
     },
     subStats: [
-      { type: "spd", rolls: [] },
-      { type: "atkPercent", rolls: [] },
-      { type: "hp", rolls: [] },
-      { type: "breakEffect", rolls: [] },
+      { type: "spd", rolls: ["low", "low", "low"] },
+      { type: "atkPercent", rolls: ["low", "low", "low"] },
+      { type: "hp", rolls: ["low"] },
+      { type: "breakEffect", rolls: ["low"] },
     ],
   },
 ];
